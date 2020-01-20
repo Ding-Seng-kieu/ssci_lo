@@ -89,7 +89,7 @@
 				$.each(f_info.f_lists, function(i, type_first_choice){
 					first_choice_info.append('<option value=:"'+type_first_choice.f_id+'">'+type_first_choic.f_name+'</option>')
 						});
-				$.('#id_type_first_choice').change(function(){
+				$('#id_type_first_choice').change(function(){
 					f_id = $(this).val();
 					
 			$.get('/direct/choose/second/',{'f_id':f_id}, function(s_info){
@@ -97,8 +97,8 @@
 				$.each(s_info.s_lists, function(i, type_second_choice){
 					second_choice_info.append('<option value>="'+type_second_choice.s_id+'">'+type_second_choice.s_name+'</option>')
 					})
-						})
-							})
+				})
+			})
                                 }); 
         })(django.jQuery);
     </script>
