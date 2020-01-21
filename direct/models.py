@@ -1,46 +1,36 @@
 from django.db import models
 
-###############################################################################
-class AreaInfo(models.Model):
-    """地区模型类"""
+
+class ChoiceInfo(models.Model):
+    """选项模型"""
     name = models.CharField(max_length = 50)
-    pid = models.ForeignKey('self', related_name = 'areas',null=True, blank=True, on_delete = models.SET_NULL)
-    
+    belong_to = models.ForeignKey('self', related_name = 'areas',null=True,
+                                 blank=True, on_delete = models.SET_NULL)
 
     def __str__(self):
         return self.name
     
     class Meta:
-        db_table = 'areainfo'
-        
-        verbose_name = '地区信息'
-        verbose_name_plural = verbose_name
-###############################################################################
-
-class ChoiceInfo(models.Model):
-    """选项模型"""
-
-    name = models.CharField(max_length = 10)
-    belong_to = models.ForeignKey('self', related_name = 'type', null = True,
-                                 blank = True, on_delete = models.SET_NULL)
-
-    def __str__(self):
-        return self.name
-
-    class Mete:
         db_table = 'choiceinfo'
+        
+        #verbose_name = '选项信息'
+        #verbose_name_plural = verbose_name
 
 
 class Position(models.Model):
     """地点模型"""
 
-    id = models.CharField(max_length = 7 , primary_key = True)
+    id = models.CharField(max_length = 7, primary_key = True)
     name = models.CharField(max_length=10)
-    POSITION_TYPE = (('1','行政区划'), ('2','道路'), ('3','村'), ('4','人工建筑'),
-                     ('5','自然实体'))
-    type = models.CharField(max_length = 1, choices = POSITION_TYPE)
-    province = models.ForeignKey(AreaInfo, null=True, blank=True, on_delete = models.SET_NULL)
-    city = models.ForeignKey(AreaInfo, related_name = 'areainfo', null=True, blank=True, on_delete = models.SET_NULL)
+    POSITION_ZONE = (('01','鼓楼'), ('02','台江'), ('03','仓山'), ('04','马尾'),
+                     ('05','晋安'), ('06','长乐'), ('07','闽侯'), ('08','连江'),
+                     ('09','罗源'), ('10','闽清'), ('11','永泰'), ('12','平潭'),
+                     ('13','福清'), ('14','古田'), ('15','屏南'))
+    zone = models.CharField(max_length = 2, choices = POSITION_ZONE)
+    first_choice = models.ForeignKey(ChoiceInfo, null=True, blank=True, 
+                                     on_delete = models.SET_NULL)
+    second_choice = models.ForeignKey(ChoiceInfo, related_name = 'choiceinfo',
+                            null=True, blank=True, on_delete = models.SET_NULL)
     location = models.CharField(max_length = 30)
     coordination = models.CharField(max_length = 21)
     created_time = models.DateTimeField(auto_now_add = True)
@@ -77,22 +67,3 @@ class Photo(models.Model):
     photo_position = models.ForeignKey(Position, on_delete = models.DO_NOTHING)
     text = models.TextField()
     image = models.ImageField()
-
-
-
-
-
-#class HeroInfo(models.Model):
-    
-#    name = models.CharField(max_length = 10)
-#    # on_delete 表示关联的外键表删除数据时，该条数据不变，外键置为空
-#    province = models.ForeignKey(AreaInfo, null=True, blank=True, on_delete = models.SET_NULL)
-#    city = models.ForeignKey(AreaInfo, related_name = 'areainfo', null=True, blank=True, on_delete = models.SET_NULL)
-#    def __str__(self):
-#        return self.name
-    
-#    class Meta:
-#        db_table = 'heroinfo'
-        
-#        verbose_name = '人物信息'
-#        verbose_name_plural = verbose_name

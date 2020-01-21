@@ -84,21 +84,36 @@
                 $('form#{{ opts.model_name }}_form :input:visible:enabled:first').focus()          
             {% endif %}
                     });
-			$.get('/direct/choose/first/', function(f_info){
-				var first_choice_info = $('#id_type_first_choice').empty().append('<option value>'+'---------'+'<option value>');
-				$.each(f_info.f_lists, function(i, type_first_choice){
-					first_choice_info.append('<option value=:"'+type_first_choice.f_id+'">'+type_first_choic.f_name+'</option>')
-						});
-				$('#id_type_first_choice').change(function(){
-					f_id = $(this).val();
-					
-			$.get('/direct/choose/second/',{'f_id':f_id}, function(s_info){
-				var second_choice_info = $('#id_type_second_choice').empty().append('<option value>'+'---------'+'<option value>');
-				$.each(s_info.s_lists, function(i, type_second_choice){
-					second_choice_info.append('<option value>="'+type_second_choice.s_id+'">'+type_second_choice.s_name+'</option>')
-					})
-				})
-			})
+            $.get('/direct/choose/first_choice/',function(f_info){
+                var first_info = $('#id_first_choice').empty().append('<option value>'+'---------'+'</option>');
+                
+                $.each(f_info.f_lists,function(i,first_choice){
+                    
+                first_info.append('<option value="'+first_choice.f_id+'">'+first_choice.f_name+'</option>')
+                    
+            });
+
+                $('#id_first_choice').change(function(){
+                    f_id = $(this).val();
+                    
+            $.get('/direct/choose/second_choice/',{'f_id':f_id},function(s_info){
+                    var second_info = $('#id_second_choice').empty().append('<option value>'+'---------'+'</option>');
+                    $.each(s_info.s_lists,function(i,second_choice){
+                        second_info.append('<option value="'+second_choice.s_id+'">'+second_choice.s_name+'</option>')
+                        })
+                    })
+                });   
+                
+//            $('#id_city').change(function(){
+//                c_id = $(this).val();
+
+//            $.get('/areas/choose/area/',{"c_id": c_id},function(a_info){
+//                var area_info = $('#id_country').empty().append('<option value>'+'---------'+'</option>');
+//                    $.each(a_info.a_lists,function(i,area){
+//                        area_info.append('<option value="'+area.a_id+'">'+area.a_name+'</option>')
+//                        });
+//                    });
+//                });
                                 }); 
         })(django.jQuery);
     </script>
