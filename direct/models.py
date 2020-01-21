@@ -1,5 +1,22 @@
 from django.db import models
 
+###############################################################################
+class AreaInfo(models.Model):
+    """地区模型类"""
+    name = models.CharField(max_length = 50)
+    pid = models.ForeignKey('self', related_name = 'areas',null=True, blank=True, on_delete = models.SET_NULL)
+    
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        db_table = 'areainfo'
+        
+        verbose_name = '地区信息'
+        verbose_name_plural = verbose_name
+###############################################################################
+
 class ChoiceInfo(models.Model):
     """选项模型"""
 
@@ -12,8 +29,6 @@ class ChoiceInfo(models.Model):
 
     class Mete:
         db_table = 'choiceinfo'
-        verbose_name = '选项'
-        verbose_name_plural = verbose_name
 
 
 class Position(models.Model):
@@ -24,11 +39,8 @@ class Position(models.Model):
     POSITION_TYPE = (('1','行政区划'), ('2','道路'), ('3','村'), ('4','人工建筑'),
                      ('5','自然实体'))
     type = models.CharField(max_length = 1, choices = POSITION_TYPE)
-    type_first_choice = models.ForeignKey(ChoiceInfo, null = True, 
-                               blank = True, on_delete = models.SET_NULL)
-    type_second_choice = models.ForeignKey(ChoiceInfo,
-                               related_name = 'choiceinfo', null =True,
-                               blank =True, on_delete = models.SET_NULL)
+    province = models.ForeignKey(AreaInfo, null=True, blank=True, on_delete = models.SET_NULL)
+    city = models.ForeignKey(AreaInfo, related_name = 'areainfo', null=True, blank=True, on_delete = models.SET_NULL)
     location = models.CharField(max_length = 30)
     coordination = models.CharField(max_length = 21)
     created_time = models.DateTimeField(auto_now_add = True)
@@ -66,3 +78,21 @@ class Photo(models.Model):
     text = models.TextField()
     image = models.ImageField()
 
+
+
+
+
+#class HeroInfo(models.Model):
+    
+#    name = models.CharField(max_length = 10)
+#    # on_delete 表示关联的外键表删除数据时，该条数据不变，外键置为空
+#    province = models.ForeignKey(AreaInfo, null=True, blank=True, on_delete = models.SET_NULL)
+#    city = models.ForeignKey(AreaInfo, related_name = 'areainfo', null=True, blank=True, on_delete = models.SET_NULL)
+#    def __str__(self):
+#        return self.name
+    
+#    class Meta:
+#        db_table = 'heroinfo'
+        
+#        verbose_name = '人物信息'
+#        verbose_name_plural = verbose_name
