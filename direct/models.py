@@ -3,9 +3,11 @@ from django.db import models
 
 class ChoiceInfo(models.Model):
     """选项模型"""
+
     name = models.CharField(max_length = 50)
     belong_to = models.ForeignKey('self', related_name = 'areas',null=True,
                                  blank=True, on_delete = models.SET_NULL)
+    choice_code = models.CharField(max_length=1, null = True)
 
     def __str__(self):
         return self.name
@@ -20,16 +22,16 @@ class ChoiceInfo(models.Model):
 class Position(models.Model):
     """地点模型"""
 
-    id = models.CharField(max_length = 7, primary_key = True)
+    code = models.CharField(max_length = 7, blank = True, null = True)
     name = models.CharField(max_length=10)
     POSITION_ZONE = (('01','鼓楼'), ('02','台江'), ('03','仓山'), ('04','马尾'),
                      ('05','晋安'), ('06','长乐'), ('07','闽侯'), ('08','连江'),
                      ('09','罗源'), ('10','闽清'), ('11','永泰'), ('12','平潭'),
                      ('13','福清'), ('14','古田'), ('15','屏南'))
     zone = models.CharField(max_length = 2, choices = POSITION_ZONE)
-    first_choice = models.ForeignKey(ChoiceInfo, null=True, blank=True, 
-                                     on_delete = models.SET_NULL)
-    second_choice = models.ForeignKey(ChoiceInfo, related_name = 'choiceinfo',
+    first_choice = models.ForeignKey(ChoiceInfo, related_name = 'first_type',
+                            null=True, blank=True, on_delete = models.SET_NULL)
+    second_choice = models.ForeignKey(ChoiceInfo, related_name = 'second_type',
                             null=True, blank=True, on_delete = models.SET_NULL)
     location = models.CharField(max_length = 30)
     coordination = models.CharField(max_length = 21)
@@ -37,10 +39,18 @@ class Position(models.Model):
     last_updated_time = models.DateTimeField(auto_now = True)
 
     def __str__(self):
-        return self.name+"(%s)"%self.id
+        return self.name+"(%s)"%self.code
 
-    #def save(self, *args, **kwargs):
-    #    super().save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if not self.code:
+            #起始编码的计算
+            self.code = self.zone + str(self.first_choice.choice_code) + \
+                str(self.second_choice.choice_code)
+            #末尾编码的计算
+            end_code = str(Position.objects.filter(\
+                code__startswith=self.code).count()+1).zfill(3)
+            self.code += end_code
+        super().save(*args, **kwargs)
 
 
 class Sound(models.Model):

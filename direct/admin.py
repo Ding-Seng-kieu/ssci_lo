@@ -3,7 +3,7 @@ from .models import Position, Sound, Photo, ChoiceInfo
 
 @admin.register(Position)
 class PositionAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'zone', 'location',
+    list_display = ('id', 'code', 'name', 'zone', 'location',
                    'first_choice', 'second_choice','coordination',
                    'created_time','last_updated_time')
 
@@ -20,4 +20,4 @@ class PhotoAdmin(admin.ModelAdmin):
 
 @admin.register(ChoiceInfo)
 class ChoiceAdmin(admin.ModelAdmin):
-    list_display = ('name', 'belong_to')
+    list_display = ('id', 'name', 'choice_code', 'belong_to')
