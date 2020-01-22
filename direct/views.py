@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.http import HttpResponse
-from .models import ChoiceInfo
+from .models import ChoiceInfo, Position
 
 
 def choose_first(request):
@@ -26,3 +26,20 @@ def choose_second(request):
     #print(s_lists[0:5])
     s_info = {"s_lists": s_lists}
     return JsonResponse(s_info, safe=False)
+
+
+def position_list(request):
+    """地名列表"""
+
+    context = {}
+    context['positions'] = Position.objects.all()
+
+    return render(request, 'position_list.html', context)
+
+def position_detail(request, number):
+    """地名详情"""
+
+    context = {}
+    context['position'] = get_object_or_404(Position, id = number)
+
+    return render(request, 'position_detail.html', context)

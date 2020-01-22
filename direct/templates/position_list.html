@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <title>SSCi_Lo</title>
+</head>
+<body>
+    {% for position in positions %}
+        <a href="{% url 'direct:position_detail' position.id %}"
+            <h3>{{ position.name }}</h3>
+        </a>
+        <p>{{ blog.content }}</p>
+    {% endfor %}
+
+</body>
+</html>

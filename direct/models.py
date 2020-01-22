@@ -23,7 +23,8 @@ class Position(models.Model):
     """地点模型"""
 
     code = models.CharField(max_length = 7, blank = True, null = True)
-    name = models.CharField(max_length=10)
+    name = models.CharField(max_length=15)
+    banguaci = models.CharField(max_length = 40, blank = True, null = True)
     POSITION_ZONE = (('01','鼓楼'), ('02','台江'), ('03','仓山'), ('04','马尾'),
                      ('05','晋安'), ('06','长乐'), ('07','闽侯'), ('08','连江'),
                      ('09','罗源'), ('10','闽清'), ('11','永泰'), ('12','平潭'),
@@ -35,6 +36,7 @@ class Position(models.Model):
                             null=True, blank=True, on_delete = models.SET_NULL)
     location = models.CharField(max_length = 30)
     coordination = models.CharField(max_length = 21)
+    note = models.CharField(max_length = 30, blank = True, null = True)
     created_time = models.DateTimeField(auto_now_add = True)
     last_updated_time = models.DateTimeField(auto_now = True)
 
@@ -66,9 +68,12 @@ class Sound(models.Model):
     created_time = models.DateTimeField(auto_now_add = True)
     last_updated_time = models.DateTimeField(auto_now = True)
     
-    #def save(self, *args, **kwargs):
-    #    self.sound_id = str(Sound.objects.count())
-    #    super().save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if not self.sound_id:
+            end_code = str(Sound.objects.filter(\
+                sound_id__startswith = self.sound_id).count())
+            self.sound_id = self.sound_position.code + '_' + end_code
+        super().save(*args, **kwargs)
 
 
 class Photo(models.Model):

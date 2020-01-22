@@ -71,6 +71,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="direct\templates\direct\index.html" />
+    <Content Include="direct\templates\position_detail.html" />
+    <Content Include="direct\templates\position_list.html" />
     <Content Include="requirements.txt" />
     <Content Include="app\static\app\content\bootstrap.css" />
     <Content Include="app\static\app\content\bootstrap.min.css" />
