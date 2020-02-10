@@ -65,12 +65,21 @@
     <Folder Include="app\templates\app\" />
     <Folder Include="direct\" />
     <Folder Include="direct\migrations\" />
+    <Folder Include="direct\static\" />
+    <Folder Include="direct\static\css\" />
+    <Folder Include="direct\static\font\" />
+    <Folder Include="direct\static\images\" />
     <Folder Include="direct\templates\" />
     <Folder Include="direct\templates\direct\" />
     <Folder Include="ssci_lo\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="direct\templates\direct\index.html" />
+    <Content Include="direct\static\css\homepage.css" />
+    <Content Include="direct\static\css\thanks.css" />
+    <Content Include="direct\static\font\MFShangYa_Noncommercial-Regular.ttf" />
+    <Content Include="direct\static\images\alipayDRcode.png" />
+    <Content Include="direct\static\images\TITLE.png" />
+    <Content Include="direct\static\images\头像.png" />
     <Content Include="direct\templates\position_detail.html" />
     <Content Include="direct\templates\position_list.html" />
     <Content Include="requirements.txt" />

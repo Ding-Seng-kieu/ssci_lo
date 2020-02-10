@@ -1,0 +1,125 @@
+*{
+	margin: 0 auto;
+	padding: 0;
+	list-style: none;
+	outline: none;
+	border: 0;
+	background: none;
+}
+@font-face{          /*导入字体*/
+	font-family: MFShangYa_Noncommercial-Regular;
+	src: url("font/MFShangYa_Noncommercial-Regular.ttf");
+}
+body{
+	font-family: "微软雅黑";
+	font-size:14px;
+	background-color: #f3f3f3;
+}
+a:link{color:#333 ;text-decoration:none ; }
+a:visited { color:#333 ;text-decoration:none ;}
+a:hover { color:#FF6600 ;text-decoration:underline ;}
+a:active {text-decoration:none ; color:#FF6600 ;text-decoration:none ; }
+/*h1 span{
+	font-family: cambria;
+	font-size: 30px;
+}*/
+/*h1{
+	font-family: MFShangYa_Noncommercial-Regular;
+	font-size: 60px;
+	display: inline-block;
+	margin: 10px 0 10px 10px;
+}*/
+table{       /*编辑表格总体*/
+	border: 2px solid #808080;
+	width: 820px;
+	text-align: center;
+	border-collapse: collapse;
+}
+td, th{
+	border: 2px solid #808080;
+}
+th span{      /*编辑区域名称样式*/
+	font-size: 28px;
+}
+.Head{    /*头像*/
+	padding: 10px;
+	display: inline-block;
+}
+.Head img{      /*编辑讨论区头像*/
+	height: 50px;
+	width: 50px;
+	display:inline-block;
+	text-align: center;
+}
+.nav{       /*导航栏*/
+	width: 980px;
+	margin: 0 auto;
+	text-align: center;
+}
+#Title{        /*编辑菜单样式*/
+	width: auto;
+	height: 48px;
+	background: #3cb371;
+}
+a.navm{
+	display: inline-block;
+	height: 48px;
+	padding: 0 50px;
+	line-height: 48px;
+	margin: 0 40px;
+}
+li{
+	display: inline-block;
+}
+    /*导航栏鼠标悬浮效果*/
+a.navm:link,a.navm:visited{text-decoration: none;color: #fff;font-size: 16px;}
+a.navm:hover{background: #00fa9a;}
+hr{
+	height: 2px;
+	border-top: solid #DDD;
+}
+#Discuss hr{     /*讨论区内 hr 设置*/
+	height: 50%;
+	background-color: #4d4d4d;
+	margin: 15px;
+}
+#area{      /*编辑地区样式*/
+	margin: 0 auto;
+	width: 820px;
+	background-color: white;
+}
+#Discuss{     /*编辑讨论区*/
+	margin: 0 auto;
+	width: 820px;
+	background: #f3f3f3;/*3cb371*/
+}
+.discussHeadName{      /*编辑评论区外边框样式*/
+	font-size: 30px;
+	font-weight: bold;
+	color: #DC143C;
+	margin: 0 auto;
+	width: 820px;
+	padding-left: 75px;
+}
+.CommentPage{      /*编辑评论区总样式*/
+	margin: 0 auto;
+	width: 744px;
+	border-bottom: 2px #e8e8e8 solid;
+	padding: 5px;
+}
+.CommentContext{    /*一个评论样式*/
+	display: inline-block;
+}
+.CommentContext span{
+	font-weight: normal;
+	color: #FF8400;
+	font-size: 14px;
+}
+.Text{    /*评论区评论*/
+	font-size: 16px;
+	padding: 2px;
+}
+.PublicTime{      /*评论发布时间*/
+	font-size: 12px;
+	padding-top: 2px;
+}

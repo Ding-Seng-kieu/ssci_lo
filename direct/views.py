@@ -32,7 +32,9 @@ def position_list(request):
     """地名列表"""
 
     context = {}
-    context['positions'] = Position.objects.all()
+    context['gulau'] = Position.objects.filter(code__startswith='01')
+    context['daigoung'] = Position.objects.filter(code__startswith='02')
+    context['coungnan'] = Position.objects.filter(code__startswith='03')
 
     return render(request, 'position_list.html', context)
 
