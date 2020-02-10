@@ -1,0 +1,117 @@
+﻿{% extends "direct/base_hp.html" %}
+{% block page %}
+{% load static %}
+	<!-- 五区十邑 -->
+	<div id="area">
+		<table>
+			<tbody>
+				<th colspan="6"><span>鼓楼</span></th>
+				<tr>
+					<th>编号</th>
+					<th>名称</th>
+					<th>平话字</th>
+					<th>行政等级</th>
+					<th>发言人</th>
+					<th>地理位置</th>
+				</tr>
+        {% for position in gulau %}
+				<tr>
+					<td>{{ position.code }}</td>
+					<td><a href="{% url 'direct:position_detail' position.id %}">{{ position.name }}</a></td>
+					<td>{{ position.banguaci }}</td>
+					<td>{{ position.second_choice }}</td>
+					<td>发言人</td>
+					<td>{{ position.coordination }}</td>
+				</tr>
+      {% endfor %}
+			</tbody>
+			<tbody>
+				<th colspan="6"><span>台江</span></th>
+				<tr>
+					<th>编号</th>
+					<th>名称</th>
+					<th>平话字</th>
+					<th>行政等级</th>
+					<th>发言人</th>
+					<th>地理位置</th>
+				</tr>
+        {% for position in daigoung %}
+				<tr>
+					<td>{{ position.code }}</td>
+					<td><a href="{% url 'direct:position_detail' position.id %}">{{ position.name }}</a></td>
+					<td>{{ position.banguaci }}</td>
+					<td>{{ position.second_choice }}</td>
+					<td>发言人</td>
+					<td>{{ position.coordination }}</td>
+				</tr>
+      {% endfor %}
+			</tbody>
+      <tbody>
+				<th colspan="6"><span>仓山</span></th>
+				<tr>
+					<th>编号</th>
+					<th>名称</th>
+					<th>平话字</th>
+					<th>行政等级</th>
+					<th>发言人</th>
+					<th>地理位置</th>
+				</tr>
+        {% for position in coungnan %}
+				<tr>
+					<td>{{ position.code }}</td>
+					<td><a href="{% url 'direct:position_detail' position.id %}">{{ position.name }}</a></td>
+					<td>{{ position.banguaci }}</td>
+					<td>{{ position.second_choice }}</td>
+					<td>发言人</td>
+					<td>{{ position.coordination }}</td>
+				</tr>
+      {% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<!-- 五区十邑结束 -->
+	<br><br>
+
+	<br>
+	<!-- 讨论区 -->
+	<div class="discussHeadName"><span>评论</span></div>
+		<hr>
+	<div id="Discuss">
+		<!-- 一个评论开始 -->
+		<div class="CommentPage">
+			<!-- 头像开始 -->
+			<div class="Head">
+				<img src="{% static 'images/头像.png' %}">
+			</div>
+			<!-- 内容开始 -->
+			<div class="CommentContext">
+				<a href="#"><span>此处应填入随机昵称1</span></a>      <!-- 填入匿名地址 -->
+				<div class="Text">我就试试看，能不能行</div>
+				<div class="PublicTime">2020-01-16 21:19</div>
+		  </div>
+		</div>
+			<!-- <hr> -->
+			<div class="CommentPage">
+			<!-- 头像开始 -->
+			<div class="Head">
+				<img src="{% static 'images/头像.png' %}">
+			</div>
+			<!-- 内容开始 -->
+			<div class="CommentContext">
+				<a href="#"><span>此处应填入随机昵称2</span></a>      <!-- 填入匿名地址 -->
+				<div class="Text">我就试试看，再能不能行</div>
+				<div class="PublicTime">2020-01-16 21:36</div>
+			</div>
+		</div>
+	</div>
+	<!-- 讨论区结束 -->
+	<!-- donation area -->
+	<div></div>
+	<!-- end donation area -->
+	<!-- special thanks -->
+	<div></div>
+	<!-- end special thank -->
+	<!-- 页脚 -->
+	<div></div>
+	<!-- 页脚结束 -->
+{% endblock page %}

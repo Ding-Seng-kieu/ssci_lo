@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title>闽音传闽</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/homepage.css' %}">
+	<style type="text/css"></style>
+</head>
+<body>
+	<!-- 标题栏 -->
+	<div>
+<!-- 		<h1>三山指路<span><em>SĂNG-SĂNG-CĪ-LÔ̤</em></span></h1> -->
+		<img src="{% static 'images/TITLE.png' %}" alt="三山指路">
+	</div>
+	<!-- 标题栏结束 -->
+	<!-- 导航栏 -->
+	<div id="Title">
+		<ul class="nav">
+			<li><a href="{% url 'position_list' %}" class="navm" target="_self">主页</a></li>
+			<li><a href="#" class="navm">通知</a></li>
+			<li><a href="#" class="navm">赞助&鸣谢</a></li>
+			<li><a href="#" class="navm">关于我们</a></li>
+		</ul>
+	</div><br><br>
+	<!-- 导航栏结束 -->
+</body>
+</html>
+{% block page %}{% endblock page %}
+{% block footer %}{% endblock footer %}

@@ -17,11 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
 from django.conf.urls import include
-from direct.views import position_list
+from direct import views
 
 urlpatterns = [
-    path('', position_list, name = 'home'),
+    path('', views.position_list, name='position_list'),
     path('admin/', admin.site.urls),
     path('direct/', include('direct.urls')),
-    #url('^direct/', include('direct.urls', namespace='direct')),
+    # url('^direct/', include('direct.urls', namespace='direct')),
 ]
