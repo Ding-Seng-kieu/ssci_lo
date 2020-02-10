@@ -37,8 +37,8 @@ class Position(models.Model):
     location = models.CharField(max_length = 30)
     coordination = models.CharField(max_length = 21)
     note = models.CharField(max_length = 30, blank = True, null = True)
-    created_time = models.DateTimeField(auto_now_add = True)
-    last_updated_time = models.DateTimeField(auto_now = True)
+    #created_time = models.DateTimeField(auto_now_add = True)
+    #last_updated_time = models.DateTimeField(auto_now = True)
 
     def __str__(self):
         return self.name+"(%s)"%self.code
