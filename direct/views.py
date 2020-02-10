@@ -36,7 +36,7 @@ def position_list(request):
     context['daigoung'] = Position.objects.filter(code__startswith='02')
     context['coungnan'] = Position.objects.filter(code__startswith='03')
 
-    return render(request, 'position_list.html', context)
+    return render(request, 'direct/position_list.html', context)
 
 def position_detail(request, number):
     """地名详情"""
@@ -44,4 +44,4 @@ def position_detail(request, number):
     context = {}
     context['position'] = get_object_or_404(Position, id = number)
 
-    return render(request, 'position_detail.html', context)
+    return render(request, 'direct/position_detail.html', context)
