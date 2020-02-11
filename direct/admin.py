@@ -4,8 +4,7 @@ from .models import Position, Sound, Photo, ChoiceInfo
 @admin.register(Position)
 class PositionAdmin(admin.ModelAdmin):
     list_display = ('code', 'name', 'banguaci', 'zone', 'location',
-                   'first_choice', 'second_choice','coordination', 'note',
-                   'created_time','last_updated_time')
+                   'first_choice', 'second_choice','coordination', 'note')
 
     change_form_template = 'choice.html'
 
