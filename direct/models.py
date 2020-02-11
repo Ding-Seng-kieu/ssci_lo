@@ -22,7 +22,7 @@ class ChoiceInfo(models.Model):
 class Position(models.Model):
     """地点模型"""
 
-    code = models.CharField(max_length = 7, blank = True, null = True)
+    code = models.CharField(max_length = 7, blank = True, null = True, unique = True)
     name = models.CharField(max_length=15)
     banguaci = models.CharField(max_length = 40, blank = True, null = True)
     POSITION_ZONE = (('01','鼓楼'), ('02','台江'), ('03','仓山'), ('04','马尾'),
@@ -34,11 +34,9 @@ class Position(models.Model):
                             null=True, blank=True, on_delete = models.SET_NULL)
     second_choice = models.ForeignKey(ChoiceInfo, related_name = 'second_type',
                             null=True, blank=True, on_delete = models.SET_NULL)
-    location = models.CharField(max_length = 30)
-    coordination = models.CharField(max_length = 21)
+    location = models.CharField(max_length = 30, blank=True, null=True)
+    coordination = models.CharField(max_length = 21, blank=True, null=True)
     note = models.CharField(max_length = 30, blank = True, null = True)
-    #created_time = models.DateTimeField(auto_now_add = True)
-    #last_updated_time = models.DateTimeField(auto_now = True)
 
     def __str__(self):
         return self.name+"(%s)"%self.code
